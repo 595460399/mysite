@@ -1,6 +1,11 @@
 <template>
   <div class="headBox">
-    <el-menu mode="horizontal">
+    <el-menu
+      mode="horizontal"
+      class="el-menu-demo"
+      text-color="#fff"
+      active-text-color="#fff"
+    >
       <el-menu-item index="/">
         <i class="fa fa-wa fa-home" /> 首页
       </el-menu-item>
@@ -36,20 +41,12 @@ export default {
 
 <style lang="less">
 .headBox {
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  z-index: 100;
-
   width: 100%;
   height: 38px;
   background: transparent;
-  background-color: #48456c;
 }
 .headBox .el-menu {
   height: 38px;
-  max-width: 80%;
   margin: 0 auto;
   border-bottom: none !important;
   background: transparent;
@@ -59,17 +56,16 @@ export default {
   height: 38px;
   line-height: 38px;
   border-bottom: none !important;
-
-  color: #fff;
 }
-
-// .headBox .el-menu > .el-menu-item:hover,
-// .headBox .el-menu > .el-submenu .el-submenu__title:hover {
-//   background-color: #48456c;
-// }
 
 .headBox .el-menu > .el-menu-item i,
 .headBox .el-menu > .el-submenu .el-submenu__title i {
   color: #fff;
+}
+
+.headBox > ul.el-menu li.el-menu-item:hover,
+.headBox > ul.el-menu li.el-submenu:hover div.el-submenu__title {
+  background-color: #48456c;
+  border-bottom: none;
 }
 </style>
