@@ -3,7 +3,7 @@
     <div class="headBack">
       <el-row class="container">
         <el-col :span="24">
-          <PCHead class="pc-head"></PCHead>
+          <PCHead class="pc-head" :activeIndex="activeIndex"></PCHead>
         </el-col>
       </el-row>
     </div>
@@ -24,6 +24,11 @@ export default {
   name: 'Head',
   components: {
     PCHead
+  },
+  data() {
+    return {
+      activeIndex: '/'
+    }
   }
 }
 </script>
@@ -37,6 +42,7 @@ export default {
   z-index: 100;
   width: 100%;
   height: 38px;
+  background-color: pink;
   background: rgba(40, 42, 44, 0.6);
 }
 .container {
@@ -67,7 +73,6 @@ export default {
   padding: 40px 0;
   border-radius: 5px;
   text-align: center;
-  font-size: 16px;
   opacity: 0.98;
   background: rgba(230, 244, 249, 0.8);
 }
@@ -77,7 +82,7 @@ export default {
   border-radius: 100%;
 }
 .h-information .h-description {
-  margin: 20px 0;
+  margin: 20px 0 0;
   span {
     font-size: 18px;
     font-weight: 700;

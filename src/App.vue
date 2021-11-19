@@ -1,28 +1,16 @@
 <template>
   <div id="app">
     <Head></Head>
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
-      <li>11</li>
-      <li>12</li>
-      <li>13</li>
-      <li>14</li>
-      <li>15</li>
-      <li>16</li>
-      <li>17</li>
-      <li>18</li>
-      <li>19</li>
-      <li>20</li>
-    </ul>
+    <div class="container">
+      <el-row :gutter="30">
+        <el-col :sm="24" :md="16">
+          <router-view class="left"></router-view>
+        </el-col>
+        <el-col :sm="24" :md="8">
+          <div class="right"></div>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -38,4 +26,18 @@ export default {
 
 <style lang="less">
 @import url('./assets/css/reset.less');
+#app > .container {
+  max-width: 80%;
+  background-color: pink;
+  margin: 0 auto;
+}
+
+#app .left {
+  height: 1300px;
+  background-color: red;
+}
+#app .right {
+  height: 1300px;
+  background-color: purple;
+}
 </style>
