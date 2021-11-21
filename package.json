@@ -9,11 +9,16 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.6",
+    "highlight.js": "^11.3.1",
+    "marked": "^4.0.4",
+    "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "xss": "^1.0.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

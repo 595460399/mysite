@@ -26,6 +26,10 @@ export default {
 
 <style lang="less">
 @import url('./assets/css/reset.less');
+
+body {
+  background-color: #efefef;
+}
 #app > .container {
   max-width: 80%;
   background-color: pink;
@@ -34,7 +38,7 @@ export default {
 
 #app .left {
   height: 1300px;
-  background-color: red;
+  // background-color: red;
 }
 #app .right {
   height: 1300px;

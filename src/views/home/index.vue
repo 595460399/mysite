@@ -1,9 +1,15 @@
 <template>
-  <div>home</div>
+  <Article></Article>
 </template>
 
 <script>
-export default {}
+import Article from '@/components/article'
+export default {
+  name: 'Home',
+  components: {
+    Article
+  }
+}
 </script>
 
-<style></style>
+<style lang="less" scoped></style>
