@@ -1,27 +1,13 @@
 <template>
-  <div v-html="contentInner"></div>
+  <MarkdownPreview
+    :initialValue="safe_content"
+    :copyCode="true"
+  ></MarkdownPreview>
 </template>
 
 <script>
 import xss from 'xss'
-import { marked } from 'marked'
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  highlight: function (code, lang) {
-    const hljs = require('highlight.js')
-    const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-    return hljs.highlight(code, { language }).value
-  },
-  langPrefix: 'hljs language-',
-  pedantic: false,
-  gfm: true,
-  breaks: false,
-  sanitize: false,
-  smartLists: true,
-  smartypants: false,
-  xhtml: false
-})
-
+import MarkdownPreview from '@/components/markdown/preview'
 export default {
   name: 'Content',
   props: {
@@ -30,15 +16,15 @@ export default {
       default: ''
     }
   },
+  components: {
+    MarkdownPreview
+  },
   computed: {
-    contentInner() {
-      // return marked.parse(xss(this.content))
-      return marked.parse(this.content)
+    safe_content() {
+      return xss(this.content)
     }
   },
-  methods: {
-    xss
-  }
+  methods: {}
 }
 </script>
 

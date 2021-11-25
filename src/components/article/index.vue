@@ -5,7 +5,14 @@
         <div class="articleObj">
           <ArticleHead :item="item" class="article-head"></ArticleHead>
           <Content :content="item.content" class="article-content"></Content>
-          <div class="article-more">btn</div>
+          <div class="button">
+            <AButton
+              icon="el-icon-d-arrow-right"
+              size="small"
+              @click="goDetail(item._id)"
+              >阅读全文</AButton
+            >
+          </div>
         </div>
       </el-col>
       <el-col :span="24" v-if="!isLoading">
@@ -26,12 +33,14 @@
 <script>
 import Content from '@/components/content'
 import ArticleHead from '@/components/articleHead'
+import AButton from '@/components/abutton'
 import articleAPI from '@/api/article'
 export default {
   name: 'Article',
   components: {
     Content,
-    ArticleHead
+    ArticleHead,
+    AButton
   },
   data() {
     return {
@@ -70,6 +79,9 @@ export default {
         this.current = pagination.currentPage
         this.isLoading = false
       })
+    },
+    goDetail(id) {
+      console.log(`go detail ${id}`)
     }
   }
 }
@@ -101,8 +113,9 @@ export default {
   .article-head {
     padding-top: 15px;
   }
-  .article-more {
-    padding-bottom: 15px;
+  .button {
+    text-align: center;
+    padding: 0 0 15px 0;
   }
 }
 

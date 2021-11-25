@@ -28,6 +28,7 @@ export default {
 @import url('./assets/css/reset.less');
 
 body {
+  cursor: url('./assets/img/cursor.png'), auto;
   background-color: #efefef;
 }
 #app > .container {

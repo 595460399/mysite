@@ -8,14 +8,16 @@
     </span>
     <header class="article-head">
       <div class="article-head-title">
-        <a href="javascript:void();">
+        <a href="javascript:void(0);" @click="goDetail(item._id)">
           {{ item.title }}
         </a>
       </div>
       <div class="article-head-count">
         <i class="fa fa-fw fa-user" />发表于
-        <i class="fa fa-fw fa-clock-o" /><span>{{ item.createDate }}</span> •
-        <i class="fa fa-fw fa-eye" />{{ item.browseCount }} 次围观 •
+        <i class="fa fa-fw fa-clock-o" /><span>{{
+          showInitDate(item.createDate)
+        }}</span>
+        • <i class="fa fa-fw fa-eye" />{{ item.browseCount }} 次围观 •
         <i class="fa fa-fw fa-comments" />活捉 {{ item.commentCount }} 条 •
         <span class="rateBox">
           <i class="fa fa-fw fa-heart" />{{
@@ -28,7 +30,7 @@
     </header>
     <div v-if="activeCateList.length > 0" class="round-tag">
       <a href="javascript:void(0);" @click="goArchive(item.classId)"
-        >{{ filterName(activeCateList, item.classId) }}分享镜</a
+        >{{ filterName(activeCateList, item.classId) }}分享dfdsfdsf 镜</a
       >
     </div>
   </div>
@@ -46,7 +48,7 @@ export default {
   },
   data() {
     return {
-      activeCateList: []
+      activeCateList: ['d']
     }
   },
   created() {
@@ -55,10 +57,13 @@ export default {
   methods: {
     showInitDate: initDate,
     goArchive(id) {
-      console.log(id)
+      console.log(`go archive ${id}`)
     },
     filterName(activeCateList, classId) {
       return activeCateList[classId]
+    },
+    goDetail(id) {
+      console.log(`go detail ${id}`)
     }
   }
 }
@@ -67,6 +72,7 @@ export default {
 <style lang="less" scoped>
 .head {
   position: relative;
+  margin-bottom: 50px;
 }
 .round-date {
   position: absolute;
@@ -88,6 +94,27 @@ export default {
 .round-date .day {
   font-size: 30px;
   font-weight: 700;
+}
+
+.article-head {
+  .article-head-title {
+    padding: 20px 0 10px 0;
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .article-head-count {
+    margin: 20px 0;
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    .rateBox {
+      display: inline-block;
+    }
+    .i {
+      font-size: 16px;
+    }
+  }
 }
 
 .round-tag {
