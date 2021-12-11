@@ -28,7 +28,7 @@
       <el-menu-item index="/friendslink">
         <i class="fa fa-wa fa-users" /> 伙伴
       </el-menu-item>
-      <el-menu-item index="/message">
+      <el-menu-item index="/board">
         <i class="fa fa-wa fa-pencil" /> 留言板
       </el-menu-item>
       <el-menu-item index="/aboutme">

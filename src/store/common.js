@@ -1,15 +1,10 @@
-import articleCateAPI from '@/api/articleCate'
 import router from '@/router'
 const defaultState = {
   activeCateList: []
 }
 
 const actions = {
-  async getActiveCate({ commit }, data) {
-    const res = await articleCateAPI.getAllList()
-    commit('CHANGE_SETTING', { key: 'activeCateList', value: res.data })
-  },
-  async goDetail({ commit }, id) {
+  async goDetail(commit, id) {
     router.push({
       name: 'Detail',
       params: {

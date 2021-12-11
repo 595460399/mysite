@@ -1,6 +1,7 @@
 <template>
   <div class="article">
     <el-row class="sharelistBox" v-loading="isLoading">
+      <div v-if="isLoading" class="loading" />
       <el-col :span="24" v-for="(item, index) in list" :key="index">
         <div class="articleObj">
           <ArticleHead :item="item" class="article-head"></ArticleHead>
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { goBackTop } from '@/utils/index.js'
 import Content from '@/components/content'
 import ArticleHead from '@/components/articleHead'
 import AButton from '@/components/abutton'
@@ -50,7 +53,7 @@ export default {
       current: 1,
       isLoading: true,
       pageSize: 10,
-      pageCount: 10,
+      pageCount: 0,
       list: []
     }
   },
@@ -60,8 +63,11 @@ export default {
     this.getList()
   },
   methods: {
+    ...mapActions('common', ['goDetail']),
     handleCurrentChange(val) {
       this.current = val
+      this.getList()
+      goBackTop()
     },
     getList() {
       const params = {
@@ -72,16 +78,12 @@ export default {
         current: this.current
       }
       articleAPI.getList(params).then((res) => {
-        console.log(res)
         const { list, pagination } = res.data
         this.list = list
         this.pageCount = pagination.pageCount
         this.current = pagination.currentPage
         this.isLoading = false
       })
-    },
-    goDetail(id) {
-      console.log(`go detail ${id}`)
     }
   }
 }
@@ -90,7 +92,11 @@ export default {
 <style lang="less">
 .article .sharelistBox {
   width: 100%;
-  background-color: green;
+  // background-color: green;
+  .loading {
+    height: 20px;
+    // margin: 0 auto;
+  }
 }
 
 .article .articleObj {
@@ -106,16 +112,17 @@ export default {
   // font-size: 15px;
   .article-head,
   .article-content,
-  .article-more {
+  .button {
     padding-left: 15px;
     padding-right: 15px;
   }
   .article-head {
     padding-top: 15px;
   }
+
   .button {
     text-align: center;
-    padding: 0 0 15px 0;
+    padding: 15px 0 15px 0;
   }
 }
 

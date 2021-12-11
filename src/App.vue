@@ -3,23 +3,33 @@
     <Head></Head>
     <div class="container">
       <el-row :gutter="30">
-        <el-col :sm="24" :md="16">
-          <router-view class="left"></router-view>
+        <el-col :sm="24" :md="17">
+          <transition>
+            <keep-alive><router-view class="left"></router-view></keep-alive>
+          </transition>
         </el-col>
-        <el-col :sm="24" :md="8">
-          <div class="right"></div>
+        <el-col :sm="24" :md="7">
+          <div class="right">
+            <Right></Right>
+          </div>
         </el-col>
       </el-row>
     </div>
+
+    <Foot></Foot>
   </div>
 </template>
 
 <script>
 import Head from '@/components/head/index'
+import Right from '@/components/right/index'
+import Foot from '@/components/foot/index'
 export default {
   name: 'App',
   components: {
-    Head
+    Head,
+    Right,
+    Foot
   }
 }
 </script>
@@ -38,8 +48,9 @@ body {
 }
 
 #app .left {
-  height: 1300px;
-  // background-color: red;
+  // height: 1300px;
+  // background-color: green;
+  // background: #fff;
 }
 #app .right {
   height: 1300px;

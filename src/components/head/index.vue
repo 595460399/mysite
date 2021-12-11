@@ -62,7 +62,7 @@ export default {
   background-size: cover;
   background-position: center 50%;
   background-repeat: no-repeat;
-  background-image: url('./../../assets/img/headbg05.jpg');
+  background-image: url('./../../assets/img/headbg.jpg');
 }
 .headImgBox .h-information {
   position: relative;

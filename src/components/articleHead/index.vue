@@ -28,15 +28,16 @@
         </span>
       </div>
     </header>
-    <div v-if="activeCateList.length > 0" class="round-tag">
-      <a href="javascript:void(0);" @click="goArchive(item.classId)"
-        >{{ filterName(activeCateList, item.classId) }}分享dfdsfdsf 镜</a
-      >
+    <div v-if="item.classId" class="round-tag">
+      <a href="javascript:void(0);" @click="goArchive(item.classId)">{{
+        item.className
+      }}</a>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { initDate } from '@/utils/index.js'
 export default {
   name: 'ArticleHead',
@@ -47,23 +48,14 @@ export default {
     }
   },
   data() {
-    return {
-      activeCateList: ['d']
-    }
+    return {}
   },
-  created() {
-    console.log(this.item)
-  },
+  created() {},
   methods: {
+    ...mapActions('common', ['goDetail']),
     showInitDate: initDate,
     goArchive(id) {
       console.log(`go archive ${id}`)
-    },
-    filterName(activeCateList, classId) {
-      return activeCateList[classId]
-    },
-    goDetail(id) {
-      console.log(`go detail ${id}`)
     }
   }
 }

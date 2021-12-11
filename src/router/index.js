@@ -46,9 +46,9 @@ const routes = [
     }
   },
   {
-    path: '/message',
-    name: 'Message',
-    component: () => import('@/views/message/index'),
+    path: '/board',
+    name: 'Board',
+    component: () => import('@/views/board/index'),
     meta: {
       title: '留言板'
     }

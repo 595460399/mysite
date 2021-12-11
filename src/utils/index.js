@@ -18,3 +18,12 @@ export const initDate = (oldDate, full) => {
     return Moment(oldDate).format('YYYY-MM-DD HH:mm:ss')
   }
 }
+
+export const goBackTop = () => {
+  // chrome
+  document.body.scrollTop = 680
+  // firefox
+  document.documentElement.scrollTop = 680
+  // safari
+  window.pageYOffset = 680
+}
