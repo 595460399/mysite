@@ -3,12 +3,12 @@
     <Head></Head>
     <div class="container">
       <el-row :gutter="30">
-        <el-col :sm="24" :md="17">
+        <el-col :sm="24" :md="18">
           <transition>
             <keep-alive><router-view class="left"></router-view></keep-alive>
           </transition>
         </el-col>
-        <el-col :sm="24" :md="7">
+        <el-col :sm="24" :md="6">
           <div class="right">
             <Right></Right>
           </div>

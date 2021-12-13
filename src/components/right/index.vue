@@ -129,7 +129,7 @@ export default {
   position: relative;
   section {
     position: relative;
-    padding: 15px;
+    padding: 5px;
     margin-bottom: 20px;
     transition: all 0.2s;
     background: #fff;
