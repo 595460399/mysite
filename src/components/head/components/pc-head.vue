@@ -26,7 +26,7 @@
         <i class="fa fa-wa fa-cny" /> 赞赏
       </el-menu-item>
       <el-menu-item index="/friendslink">
-        <i class="fa fa-wa fa-users" /> 伙伴
+        <i class="fa fa-wa fa-users" /> 链接
       </el-menu-item>
       <el-menu-item index="/board">
         <i class="fa fa-wa fa-pencil" /> 留言板

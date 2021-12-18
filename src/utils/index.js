@@ -27,3 +27,7 @@ export const goBackTop = () => {
   // safari
   window.pageYOffset = 680
 }
+
+export function getTimeLine(time) {
+  return Moment(time).format('MM-DD HH:mm:ss')
+}

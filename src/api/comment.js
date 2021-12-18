@@ -1,10 +1,9 @@
 import request from './index'
-const PATH1 = '/comments'
-const PATH2 = '/comment'
+const PATH = '/comments'
 
 function getList(params) {
   return request({
-    url: `${PATH1}`,
+    url: `${PATH}`,
     method: 'GET',
     params
   })
@@ -12,7 +11,7 @@ function getList(params) {
 
 function addInfo(data) {
   return request({
-    url: `${PATH2}/add`,
+    url: `${PATH}`,
     method: 'POST',
     data
   })

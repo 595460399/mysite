@@ -54,8 +54,13 @@ export default {
   methods: {
     ...mapActions('common', ['goDetail']),
     showInitDate: initDate,
-    goArchive(id) {
-      console.log(`go archive ${id}`)
+    goArchive(classId) {
+      this.$router.push({
+        name: 'Archive',
+        query: {
+          classId
+        }
+      })
     }
   }
 }

@@ -6,24 +6,24 @@ const service = axios.create({
 })
 service.interceptors.request.use(
   (config) => {
-    console.log('request config', config)
+    // console.log('request config', config)
     return config
   },
   (err) => {
-    console.log('request err', err)
+    // console.log('request err', err)
     return err
   }
 )
 
 service.interceptors.response.use(
   (response) => {
-    console.log('response ', response)
+    // console.log('response ', response)
     const res = response.data
     console.log('res', res)
     return res
   },
   (err) => {
-    console.log('response err', err)
+    // console.log('response err', err)
     return err
   }
 )

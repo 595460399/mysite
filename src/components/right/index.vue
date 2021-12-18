@@ -1,6 +1,6 @@
 <template>
   <div class="rightListBox">
-    <section>
+    <section class="r1">
       <div class="r1-head">
         <img src="@/assets/img/headtou.jpg" alt="" />
         <h1><span>啦啦</span>小婵</h1>
@@ -39,7 +39,38 @@
         </div>
       </div>
     </section>
-
+    <section class="r2">
+      <div class="head">
+        <span class="title">分类</span>
+        <span class="more" @click="goArchive()">more</span>
+      </div>
+      <ul class="body">
+        <li
+          v-for="item in classList"
+          :key="item.id"
+          @click="goArchive((classId = item.id), (tagId = null))"
+        >
+          <span>{{ item.name }}</span
+          ><span>({{ item.count }})</span>
+        </li>
+      </ul>
+    </section>
+    <section class="r3">
+      <div class="head">
+        <span class="title">标签</span>
+        <span class="more" @click="goArchive()">more</span>
+      </div>
+      <ul class="body">
+        <li v-for="item in tagList" :key="item.id">
+          <el-button
+            size="small"
+            :type="elClassList[item.id % elClassList.length]"
+            @click="goArchive((classId = null), (tagId = item.id))"
+            >{{ item.name }}</el-button
+          >
+        </li>
+      </ul>
+    </section>
     <div class="toTop" :style="'top:' + top" @click="toTopfun">
       <img src="@/assets/img/scroll.png" alt="" />
     </div>
@@ -48,12 +79,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+import archiveAPI from '@/api/archive'
 // import commentAPI from '@/api/comment'
 // import loveAPI from '@/api/love'
 export default {
   name: 'Right',
   data() {
     return {
+      elClassList: ['primary', 'success', 'info', 'warning', 'danger'],
       top: 0, // 小猫高度
       fixDo: false,
       gotoTop: false, // 返回顶部
@@ -62,11 +95,17 @@ export default {
         qq: require('./../../assets/img/yoyo/qq.jpg'),
         wechat: require('./../../assets/img/yoyo/wechat.jpg'),
         gitee: 'https://gitee.com/smallwoogui'
-      }
+      },
+      classList: [],
+      tagList: []
     }
   },
-  async created() {
+  created() {
     this.init()
+  },
+  mounted() {
+    this.getClassList()
+    this.getTagList()
   },
   beforeDestroy() {
     window.removeEventListener('scroll')
@@ -119,6 +158,25 @@ export default {
           timer = null
         }
       }, 30)
+    },
+    goArchive(classId, tagId) {
+      this.$router.push({
+        name: 'Archive',
+        query: {
+          classId,
+          tagId
+        }
+      })
+    },
+    async getClassList() {
+      const params = {}
+      const res = await archiveAPI.getClassList(params)
+      this.classList = res.data.content.splice(0, 5)
+    },
+    async getTagList() {
+      const params = {}
+      const res = await archiveAPI.getTagList(params)
+      this.tagList = res.data.content.splice(0, 10)
     }
   }
 }
@@ -127,72 +185,138 @@ export default {
 <style lang="less" scoped>
 .rightListBox {
   position: relative;
-  section {
+  section.r1 {
     position: relative;
     padding: 5px;
     margin-bottom: 20px;
     transition: all 0.2s;
     background: #fff;
     border-radius: 5px;
+    .r1-head {
+      text-align: center;
+      position: relative;
+      // border-radius: 4px 4px 0 0;
+      img {
+        width: 100%;
+        min-height: 40px;
+      }
+      h1 {
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        margin: 0 0 0 -65px;
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        color: #fff;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+        font-weight: 700;
+        width: 130px;
+        span {
+          opacity: 0.3;
+        }
+      }
+    }
+    .r1-body p {
+      margin: 5px 0 8px 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .r1-body .catch-me {
+      text-align: center;
+      a {
+        display: inline-block;
+        margin-bottom: 7px;
+        position: relative;
+        text-decoration: none;
+        i {
+          margin: 0 3px;
+          display: inline-block;
+          font-size: 18px;
+          width: 42px;
+          height: 42px;
+          line-height: 42px;
+          border-radius: 42px;
+          color: rgba(0, 0, 0, 0.5);
+          background: rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease-in-out;
+          font-style: normal;
+        }
+      }
+      a:hover i {
+        color: #fff;
+        background: #f4692c;
+      }
+    }
   }
-  section:hover {
+  section.r1:hover {
     transform: translate(0, -2px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   }
-  .r1-head {
-    text-align: center;
+
+  section.r2 {
     position: relative;
-    // border-radius: 4px 4px 0 0;
-    img {
-      width: 100%;
-      min-height: 40px;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+    background: #fff;
+    border-radius: 5px;
+    .head {
+      border-bottom: 1px solid #ebeef5;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #97dffd;
+      span.more {
+        color: #48456d;
+        float: right;
+        font-size: 14px;
+        // opacity: 0.5;
+      }
+      span.more:hover {
+        cursor: pointer;
+      }
     }
-    h1 {
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-      margin: 0 0 0 -65px;
-      font-size: 20px;
-      letter-spacing: 0.5px;
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-      font-weight: 700;
-      width: 130px;
-      span {
-        opacity: 0.3;
+    ul.body {
+      padding: 10px 20px;
+      li {
+        padding: 5px 0;
+        span:last-child {
+          float: right;
+        }
+      }
+      li:hover {
+        background-color: #48456d;
+        color: #fff;
+        cursor: pointer;
       }
     }
   }
-  .r1-body p {
-    margin: 5px 0 8px 0;
-    font-size: 14px;
-    font-weight: 700;
-    text-align: center;
-  }
-  .r1-body .catch-me {
-    text-align: center;
-    a {
-      display: inline-block;
-      margin-bottom: 7px;
-      position: relative;
-      text-decoration: none;
-      i {
-        margin: 0 3px;
+  section.r3 {
+    position: relative;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+    background: #fff;
+    border-radius: 5px;
+    .head {
+      border-bottom: 1px solid #ebeef5;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #97dffd;
+      span.more {
+        float: right;
+        font-size: 14px;
+        // opacity: 0.5;
+        color: #48456d;
+      }
+      span.more:hover {
+        cursor: pointer;
+      }
+    }
+    ul.body {
+      padding: 5px 10px;
+      li {
         display: inline-block;
-        font-size: 18px;
-        width: 42px;
-        height: 42px;
-        line-height: 42px;
-        border-radius: 42px;
-        color: rgba(0, 0, 0, 0.5);
-        background: rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
-        font-style: normal;
+        padding: 5px 5px;
       }
-    }
-    a:hover i {
-      color: #fff;
-      background: #f4692c;
     }
   }
 }
@@ -207,7 +331,6 @@ export default {
   transition: all 0.5s 0.3s ease-in-out;
   cursor: pointer;
 }
-
 .toTop img {
   width: 100%;
   height: auto;

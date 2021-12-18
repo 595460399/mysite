@@ -43,7 +43,7 @@ body {
 }
 #app > .container {
   max-width: 80%;
-  background-color: pink;
+  // background-color: pink;
   margin: 0 auto;
 }
 
@@ -53,7 +53,7 @@ body {
   // background: #fff;
 }
 #app .right {
-  height: 1300px;
-  background-color: purple;
+  // height: 1300px;
+  // background-color: purple;
 }
 </style>

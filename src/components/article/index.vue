@@ -78,8 +78,8 @@ export default {
         current: this.current
       }
       articleAPI.getList(params).then((res) => {
-        const { list, pagination } = res.data
-        this.list = list
+        const { content, pagination } = res.data
+        this.list = content
         this.pageCount = pagination.pageCount
         this.current = pagination.currentPage
         this.isLoading = false
