@@ -2,7 +2,7 @@
   <div class="article">
     <el-row class="sharelistBox" v-loading="isLoading">
       <div v-if="isLoading" class="loading" />
-      <el-col :span="24" v-for="(item, index) in list" :key="index">
+      <el-col :span="24" v-for="item in list" :key="item.articleId">
         <div class="articleObj">
           <ArticleHead :item="item" class="article-head"></ArticleHead>
           <Content :content="item.content" class="article-content"></Content>
@@ -10,7 +10,7 @@
             <AButton
               icon="el-icon-d-arrow-right"
               size="small"
-              @click="goDetail(item._id)"
+              @click="goDetail(item.articleId)"
               >阅读全文</AButton
             >
           </div>
@@ -79,6 +79,7 @@ export default {
       }
       articleAPI.getList(params).then((res) => {
         const { content, pagination } = res.data
+        console.log('content', content)
         this.list = content
         this.pageCount = pagination.pageCount
         this.current = pagination.currentPage

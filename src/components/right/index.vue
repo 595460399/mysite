@@ -171,12 +171,12 @@ export default {
     async getClassList() {
       const params = {}
       const res = await archiveAPI.getClassList(params)
-      this.classList = res.data.content.splice(0, 5)
+      this.classList = res.data.content
     },
     async getTagList() {
       const params = {}
       const res = await archiveAPI.getTagList(params)
-      this.tagList = res.data.content.splice(0, 10)
+      this.tagList = res.data.content
     }
   }
 }
